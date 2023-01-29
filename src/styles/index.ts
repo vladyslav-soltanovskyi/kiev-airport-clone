@@ -1,2 +1,3 @@
 export { GlobalStyles } from "./globalStyles";
-export { lightTheme, darkTheme } from "./theme";
+export { themes } from "./theme";
+export type { Themes, ThemeModes } from './types';

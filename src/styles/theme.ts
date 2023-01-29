@@ -9,6 +9,7 @@ const colors = {
   text: "#212529",
   textDark: "#212529",
   textLight: "#95989a",
+  textLightSecondary: "#b8b9b9",
   background: "#e7efec",
   borderLight: "#d0d0d0",
 };
@@ -86,8 +87,8 @@ const shadows = {
 
 const borders = {
   dayContainer: `3px solid ${colors.borderLight}`,
+  dayContainerActive: `3px solid ${colors.primary}`,
 };
-
 
 export const breakpoints = {
   xs: 480,
@@ -137,3 +138,8 @@ const darkTheme = {
 };
 
 export { lightTheme, darkTheme };
+
+export const themes  = {
+  dark: darkTheme,
+  light: lightTheme,
+};

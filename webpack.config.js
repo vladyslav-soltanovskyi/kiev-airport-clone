@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 
@@ -19,6 +20,13 @@ module.exports = (env, argv) => {
           options: {
             presets: ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"]
           }
+        },
+        {
+          test: /\.css$/,
+          use: [
+            isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+            'css-loader'
+          ]
         }
       ],
     },
@@ -27,6 +35,12 @@ module.exports = (env, argv) => {
       alias: {
         'providers': path.resolve(__dirname, '.', 'src', 'providers'),
         'styles': path.resolve(__dirname, '.', 'src', 'styles'),
+        'hooks': path.resolve(__dirname, '.', 'src', 'hooks'),
+        'services': path.resolve(__dirname, '.', 'src', 'services'),
+        'ui': path.resolve(__dirname, '.', 'src', 'components', 'ui'),
+        'screens': path.resolve(__dirname, '.', 'src', 'components', 'screens'),
+        'layout': path.resolve(__dirname, '.', 'src', 'components', 'layout'),
+        'components': path.resolve(__dirname, '.', 'src', 'components'),
       },
     },
     plugins: [
@@ -46,6 +60,14 @@ module.exports = (env, argv) => {
 
   if (isProduction) {
     config.plugins.push(new webpack.HotModuleReplacementPlugin());
+  }
+
+  if (isProduction) {
+    config.plugins.push(
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
+    );
   }
 
   return config;

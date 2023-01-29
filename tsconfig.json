@@ -22,6 +22,12 @@
     "paths": {
       "providers/*": ["./src/providers/*"],
       "styles/*": ["./src/styles/*"],
+      "hooks/*": ["./src/hooks/*"],
+      "services/*": ["./src/services/*"],
+      "ui/*": ["./src/components/ui/*"],
+      "screens/*": ["./src/components/screens/*"],
+      "layout/*": ["./src/components/layout/*"],
+      "components/*": ["./src/components/*"],
     },
   },
   "include": [

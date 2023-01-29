@@ -8,7 +8,7 @@ export const GlobalStyles = createGlobalStyle`
 
   html,
   body {
-    font-family: open sans,sans-serif;
+    font-family: "Open Sans",sans-serif;
     height: 100%;
     position: relative;
     background: ${({ theme }) => theme.colors.background};
