@@ -1,0 +1,24 @@
+{
+  "search": {
+    "title": "search flight",
+    "placeholder": "Airline, destination or flight #",
+    "search": "search"
+  },
+  "departures": "Departures",
+  "arrivals": "Arrivals",
+  "yesterday": "Yesterday",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "no-found-flights": "No Flight",
+  "table": {
+    "term": "Terminal",
+    "time": "Local time",
+    "city": "Destination",
+    "status": "Status",
+    "airline": "AirLine",
+    "flight": "Flight",
+    "details": "Flight details",
+    "landed": "Landed",
+    "departed": "Departed at"
+  }
+}

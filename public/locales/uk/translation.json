@@ -1,0 +1,24 @@
+{
+  "search": {
+    "title": "пошук рейсу",
+    "placeholder": "Номер рейсу або місто",
+    "search": "Знайти"
+  },
+  "departures": "виліт",
+  "arrivals": "приліт",
+  "yesterday": "Вчора",
+  "today": "Сьогодні",
+  "tomorrow": "Завтра",
+  "no-found-flights": "Немає рейсів",
+  "table": {
+    "term": "Термінал",
+    "time": "Розклад",
+    "city": "Напрямок",
+    "status": "Статус",
+    "airline": "Авіакомпанія",
+    "flight": "Рейс",
+    "details": "Деталі рейсу",
+    "landed": "Прибув",
+    "departed": "Вилетів о"
+  }
+}
