@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin")
 const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 require('webpack-dev-server');
 
 module.exports = (env, argv) => {
@@ -12,7 +13,8 @@ module.exports = (env, argv) => {
   const config = {
     entry: './src/index.tsx',
     output: {
-      filename: 'bundle.js',
+      filename: '[name].[hash].js',
+      clean: true
     },
     module: {
       rules: [
@@ -49,6 +51,48 @@ module.exports = (env, argv) => {
         'utils': path.resolve(__dirname, '.', 'src', 'app', 'utils'),
       },
     },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          parallel: false,
+          terserOptions: {
+            output: {
+              comments: false,
+            },
+          },
+        }),
+      ],
+      minimize: isProduction,
+      splitChunks: {
+        cacheGroups: {
+          reactVendor: {
+            test: /[\\/]node_modules[\\/](react|react-dom|react-router-dom)[\\/]/,
+            name: 'vendor-react',
+            chunks: 'all',
+          },
+          momentLocalesVendor: {
+            test: /[\\/]node_modules[\\/](moment)[\\/](locale)[\\/]/,
+            name: 'vendor-moment-locales',
+            chunks: 'all',
+          },
+          momentVendor: {
+            test: /[\\/]node_modules[\\/](moment)[\\/](moment.js)/,
+            name: 'vendor-moment',
+            chunks: 'all',
+          },
+          dateFnsVendor: {
+            test: /[\\/]node_modules[\\/](date-fns)[\\/]/,
+            name: 'vendor-date-fns',
+            chunks: 'all',
+          },
+          corejsVendor: {
+            test: /[\\/]node_modules[\\/](core-js)[\\/]/,
+            name: 'vendor-corejs',
+            chunks: 'all',
+          },
+        },
+      },
+    },
     plugins: [
       new webpack.ProgressPlugin(),
       new CleanWebpackPlugin(),
@@ -61,7 +105,7 @@ module.exports = (env, argv) => {
       new CopyPlugin({
         patterns: [
           {
-            from: path.join(__dirname, '/public'), to: path.join(__dirname, '/dist') // copy public folder, which contains locales for i18next
+            from: path.join(__dirname, '/public'), to: path.join(__dirname, '/dist')
           }
         ]
       })
