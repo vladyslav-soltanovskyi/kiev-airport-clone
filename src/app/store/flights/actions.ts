@@ -15,4 +15,6 @@ export const fetchFlights = createAsyncThunk<DtoFlights, Date>(
   }
 )
 
-export const selectDate = createAction<Date>('flights/selectDate')
+export const selectDate = createAction<Date>('flights/select-date');
+
+export const changeSearchText = createAction<string>('flights/change-search-text')

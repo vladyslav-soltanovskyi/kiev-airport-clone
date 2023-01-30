@@ -20,23 +20,22 @@ import { useActions } from "hooks/useActions";
 import { useTypedSelector } from "hooks/useTypedSelector";
 import { getSelectedDateSelector } from "store/flights/selectors";
 
-interface DatesProps {
 
-}
-
-const Dates: FC<DatesProps> = () => {
+const Dates: FC = () => {
   const { t } = useTranslation();
   const [params, setParams] = useSearchParams();
   const queryParams = queryString.parse(params.toString());
   const { selectDate } = useActions();
   const date = useTypedSelector(getSelectedDateSelector);
-
+  const { fetchFlights } = useActions();
+  
   const changeDate = (date: Date) => {
     selectDate(date);
     setParams({
       ...queryParams,
       date: formatDateQuery(date)
-    })
+    });
+    fetchFlights(date);
   }
 
   return (

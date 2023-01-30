@@ -1,12 +1,15 @@
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0 10px;
+  padding: 10px;
   max-width: 720px;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
+
+  ${({ theme }) => theme.maxMedia.md} {
+    padding: 0;
+  }
 `;
 
 export const SearchTitle = styled.h2`
@@ -14,6 +17,17 @@ export const SearchTitle = styled.h2`
   line-height: 60px;
   font-weight: 300;
   text-transform: uppercase;
+
+  ${({ theme }) => theme.maxMedia.lg} {
+    line-height: 80px;
+    font-size: 60px;
+  }
+
+  ${({ theme }) => theme.maxMedia.md} {
+    font-size: 35px;
+    line-height: 40px;
+    padding: 0 10px;
+  }
 `;
 
 export const SearchFormContainer = styled.div`
@@ -34,6 +48,13 @@ export const SearchIcon = styled.i`
   display: flex;
   align-items: center;
   justify-content: center;
+
+  ${({ theme }) => theme.maxMedia.md} {
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    left: 10px;
+  }
 `;
 
 export const SearchInput = styled.input`
@@ -46,7 +67,27 @@ export const SearchInput = styled.input`
   width: 100%;
   outline: none;
   border-radius: 0 80px 0 0;
-`
+  transition: .3s ease-in-out;
+  background: ${({ theme }) => theme.colors.backgroundLight};
+  color: ${({ theme }) => theme.colors.text};
+
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.textLight};
+  }
+  
+  ${({ theme }) => theme.maxMedia.lg} {
+    height: 60px;
+    font-size: 18px;
+  }
+
+  ${({ theme }) => theme.maxMedia.md} {
+    height: 50px;
+    padding: 0 0 0 45px;
+    border-radius: 0;
+    font-size: 16px;
+    width: calc(100%);
+  }
+`;
 
 export const SearchBtn = styled.button`
   width: 200px;
@@ -71,4 +112,12 @@ export const SearchBtn = styled.button`
   :hover {
     border-radius: 0 40px 0 0;
   }
-`
+
+  ${({ theme }) => theme.maxMedia.lg} {
+    width: 170px;
+  }
+
+  ${({ theme }) => theme.maxMedia.md} {
+    display: none;
+  }
+`;

@@ -4,17 +4,17 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import Arrivals from 'screens/arrivals/Arrivals';
 import Departures from 'screens/departures/Departures';
 import Layout from 'components/layout/Layout';
-import { useActions } from './app/hooks';
+import { useActions, useTypedSelector } from './app/hooks';
 import i18n from './i18n';
 import LoaderPage from 'ui/loader-page/LoaderPage';
-import { formatDateQuery, getDateByParams } from 'utils/dates';
+import { getSelectedDateSelector } from 'store/flights/selectors';
 
 const App: FC = () => {
+  const selectedDate = useTypedSelector(getSelectedDateSelector);
   const { fetchFlights } = useActions();
-  const defaultDay = getDateByParams();
 
   useEffect(() => {
-    fetchFlights(defaultDay);
+    fetchFlights(selectedDate);
   }, []);
 
   return (

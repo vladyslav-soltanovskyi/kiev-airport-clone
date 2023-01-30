@@ -11,12 +11,17 @@ const colors = {
   textLight: "#95989a",
   textLightSecondary: "#b8b9b9",
   background: "#e7efec",
+  backgroundLight: "#fff",
   borderLight: "#d0d0d0",
 };
 
 const darkColors = {
   ...colors,
-  background: "#404342",
+  background: "#2a2d2c",
+  backgroundLight: "#5c5c5c",
+  text: "#eee",
+  textLight: "#bbb",
+  primaryDark: "rgb(223 223 223 / 10%)",
 };
 
 const shadows = {
@@ -49,7 +54,6 @@ const lightTheme = {
   colors,
   shadows,
   borders,
-  breakpoints,
   maxMedia,
 };
 
@@ -57,7 +61,6 @@ const darkTheme = {
   colors: darkColors,
   shadows,
   borders,
-  breakpoints,
   maxMedia,
 };
 

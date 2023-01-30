@@ -1,13 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IFlightsState } from './types'
-import { fetchFlights, selectDate } from './actions'
-import { getRecievArrival, getRecievDeparture } from './helpers'
+import {
+  changeSearchText,
+  fetchFlights,
+  selectDate
+} from './actions'
+import {
+  getDefaultSearchParam,
+  getRecievArrival,
+  getRecievDeparture
+} from './helpers'
 import { getDateByParams } from 'utils/dates'
 
 const initialState: IFlightsState = {
   arrivals: [],
   departures: [],
   isFetching: false,
+  searchText: getDefaultSearchParam(),
   selectedDate: getDateByParams()
 }
 
@@ -35,6 +44,9 @@ export const eventsSlice = createSlice({
       })
       .addCase(selectDate, (state, { payload }) => {
         state.selectedDate = payload;
+      })
+      .addCase(changeSearchText, (state, { payload }) => {
+        state.searchText = payload;
       })
   },
   reducers: {}

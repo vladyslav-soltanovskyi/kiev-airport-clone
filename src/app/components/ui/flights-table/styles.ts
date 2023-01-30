@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const TableContainer = styled.table`
   border-collapse: collapse;
@@ -41,10 +41,24 @@ export const TableCeilCenter = styled(TableCeil)`
   text-align: center;
 `;
 
-export const TermField = styled.span`
-  color: #63c745;
+export const TermField = styled.span<{ term: string; }>`
+  color: ${({ theme, term }) => {
+    switch(term) {
+      case "D":
+        return theme.colors.primary;
+      default:
+        return theme.colors.secondary;
+    }
+  }};
   font-weight: 700;
-  border: 1px solid #63c745;
+  border: 1px solid ${({ theme, term }) => {
+    switch(term) {
+      case "D":
+        return theme.colors.primary;
+      default:
+        return theme.colors.secondary;
+    }
+  }};
   border-radius: 50%;
   display: inline-block;
   width: 40px;
@@ -74,6 +88,10 @@ export const AirlineLogo = styled.img`
 
 export const AirlineName = styled.p`
   margin: 0;
+`;
+
+export const TableCeilLink = styled(TableCeil)`
+  min-width: 150px;
 `;
 
 export const TableLink = styled(NavLink)`

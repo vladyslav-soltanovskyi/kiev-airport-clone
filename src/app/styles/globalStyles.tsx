@@ -9,10 +9,10 @@ export const GlobalStyles = createGlobalStyle`
   html,
   body {
     font-family: "Open Sans",sans-serif;
-    height: 100%;
     position: relative;
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
+    transition: .3s ease-in-out;
   }
 
   h1,

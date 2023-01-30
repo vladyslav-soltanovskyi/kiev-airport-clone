@@ -1,7 +1,14 @@
-import { AirlineInfo, DtoArrival, DtoDeparture, DtoFlightInfo, RecievFlightInfo } from "types/flight"
+import queryString from "query-string";
+import {
+  DtoAirlineInfo,
+  DtoArrival,
+  DtoDeparture,
+  DtoFlightInfo,
+  RecievFlightInfo
+} from "types/flight"
 import { formatTime } from "utils/dates";
 
-const getAirlineInfo = ({ logoName, name }: AirlineInfo): AirlineInfo => {
+const getAirlineInfo = ({ logoName, name }: DtoAirlineInfo): DtoAirlineInfo => {
   return { logoName, name };
 }
 
@@ -10,7 +17,7 @@ const getRecievFlight = (flight: DtoFlightInfo) => {
     id: flight.ID,
     airline: {
       en: getAirlineInfo(flight.airline.en),
-      ua: getAirlineInfo(flight.airline.ua)
+      uk: getAirlineInfo(flight.airline.ua)
     },
     flightNum: `${flight['carrierID.IATA'] ?? flight['carrierID.code']}${flight.fltNo}`,
     term: flight.term
@@ -39,4 +46,10 @@ export const getRecievDeparture = (departure: DtoDeparture): RecievFlightInfo =>
     },
     time: formatTime(departure.timeDepShedule)
   }
+}
+
+export const getDefaultSearchParam = () => {
+  const params = queryString.parse(location.search);
+  
+  return typeof params.search === "string" ? params.search : ''; 
 }

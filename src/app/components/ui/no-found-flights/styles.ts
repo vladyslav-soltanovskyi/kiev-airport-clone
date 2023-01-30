@@ -9,5 +9,4 @@ export const NoFoundFlightsContainer = styled.div`
   font-size: 30px;
   font-weight: 700;
   padding: 0 50px;
-  background: #fff;
 `;

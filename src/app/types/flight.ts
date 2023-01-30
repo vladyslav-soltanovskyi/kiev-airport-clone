@@ -1,16 +1,21 @@
-interface Airline {
-  en: AirlineInfo;
-  ua: AirlineInfo;
+interface DtoAirline {
+  en: DtoAirlineInfo;
+  ua: DtoAirlineInfo;
 }
 
-export interface AirlineInfo {
+interface RecievAirline {
+  en: DtoAirlineInfo;
+  uk: DtoAirlineInfo;
+}
+
+export interface DtoAirlineInfo {
   name: string;
   logoName?: string;
 }
 
 export interface DtoFlightInfo {
   ID: number;
-  airline: Airline;
+  airline: DtoAirline;
   ['carrierID.IATA']: string;
   ['carrierID.code']: string;
   fltNo: string;
@@ -43,7 +48,7 @@ export interface DtoFlights {
 
 export interface RecievFlightInfo {
   id: number;
-  airline: Airline;
+  airline: RecievAirline;
   flightNum: string;
   city: {
     en: string;

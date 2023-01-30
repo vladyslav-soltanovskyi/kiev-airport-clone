@@ -2,7 +2,20 @@ import { useLang } from "hooks/useLang";
 import React, { FC } from "react";
 import { useTranslation } from "react-i18next";
 import { RecievFlightInfo } from "types/flight";
-import { AirlineContainer, AirlineField, AirlineLogo, AirlineName, TableCeil, TableCeilCenter, TableContainer, TableHeader, TableLink, TableRow, TermField } from "./styles";
+import {
+  AirlineContainer,
+  AirlineField,
+  AirlineLogo,
+  AirlineName,
+  TableCeil,
+  TableCeilCenter,
+  TableCeilLink,
+  TableContainer,
+  TableHeader,
+  TableLink,
+  TableRow,
+  TermField
+} from "./styles";
 
 interface FlightsTableProps {
   flights: RecievFlightInfo[];
@@ -25,7 +38,7 @@ const FlightsTable: FC<FlightsTableProps> = ({
   const { lang } = useLang();
   const { t } = useTranslation();
   const isLanded = typeFlights === 'arrivals';
-  
+
   return (
     <TableContainer>
       <thead>
@@ -39,23 +52,23 @@ const FlightsTable: FC<FlightsTableProps> = ({
         {flights.map(({ term, time, id, airline, flightNum, city, status }) => (
           <TableRow key={id}>
             <TableCeilCenter>
-              <TermField>{term}</TermField>
+              <TermField term={term}>{term}</TermField>
             </TableCeilCenter>
             <TableCeil>{time}</TableCeil>
             <TableCeil>{city[lang]}</TableCeil>
             <TableCeil>{t(`table.${isLanded ? 'landed' : 'departed'}`)} {status}</TableCeil>
             <TableCeil>
               <AirlineContainer>
-              <AirlineField>
-                <AirlineLogo src={airline.ua.logoName} alt="logo" />
-              </AirlineField>
-              <AirlineName>{airline.ua.name}</AirlineName>
+                <AirlineField>
+                  <AirlineLogo src={airline[lang].logoName} alt="logo" />
+                </AirlineField>
+                <AirlineName>{airline[lang].name}</AirlineName>
               </AirlineContainer>
             </TableCeil>
             <TableCeil>{flightNum}</TableCeil>
-            <TableCeil>
+            <TableCeilLink>
               <TableLink to={`/arrivals/${id}`}>{t('table.details')}</TableLink>
-            </TableCeil>
+            </TableCeilLink>
           </TableRow>
         ))}
       </tbody>

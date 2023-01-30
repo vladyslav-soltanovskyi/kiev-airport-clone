@@ -4,5 +4,6 @@ export interface IFlightsState {
   arrivals: RecievFlightInfo[];
   departures: RecievFlightInfo[];
   isFetching: boolean;
+  searchText: string;
   selectedDate: Date;
 }
